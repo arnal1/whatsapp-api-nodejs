@@ -1,14 +1,21 @@
-<h1 style="text-align: center"> whatsapp-api-nodejs Multi Device</h1>
-<p style="text-align: center">
+<h1 align="center"> whatsapp-api-nodejs Multi Device</h1>
+<div align="center">
+<p>
 <a href="#"><img title="skynet" src="https://img.shields.io/badge/whatsapp api nodejs Multi Device-black?style=for-the-badge" alt=""></a>
 </p>
-<p style="text-align: center">
+<p>
 <a href="https://github.com/salman0ansari"><img title="Author" src="https://img.shields.io/badge/Author-Mohd Salman Ansari-black.svg?style=for-the-badge&logo=github" alt=""></a>
 </p>
-<p style="text-align: center">
-<a href="https://github.com/salman0ansari/whatsapp-api-nodejs"><img title="Followers" src="https://img.shields.io/github/followers/salman0ansari?color=black&style=flat-square" alt=""></a>
-<a href="https://github.com/salman0ansari/whatsapp-api-nodejs"><img title="Stars" src="https://img.shields.io/github/stars/salman0ansari/whatsapp-api-nodejs?color=black&style=flat-square" alt=""></a>
+<a href="https://github.com/salman0ansari?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/salman0ansari?color=black&style=flat-square" alt=""></a>
+<a href="https://github.com/salman0ansari/whatsapp-api-nodejs/stargazers"><img title="Stars" src="https://img.shields.io/github/stars/salman0ansari/whatsapp-api-nodejs?color=black&style=flat-square" alt=""></a>
 <a href="https://github.com/salman0ansari/whatsapp-api-nodejs/network/members"><img title="Forks" src="https://img.shields.io/github/forks/salman0ansari/whatsapp-api-nodejs?color=black&style=flat-square" alt=""></a>
+<a href="https://github.com/salman0ansari/whatsapp-api-nodejs/issues"><img title="Issues" src="https://img.shields.io/github/issues/salman0ansari/whatsapp-api-nodejs?color=black&style=flat-square" alt=""></a>
+<p>
+
+<a href="http://github.com/salman0ansari/whatsapp-api-nodejs"><img title="Hits" src="http://hits.dwyl.com/salman0ansari/whatsapp-api-nodejs.svg?style=flat-square"></a>
+</p>
+<a href="https://www.buymeacoffee.com/salman0ansari" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+</div>
 
 ---
 
@@ -29,13 +36,16 @@ An implementation of [Baileys](https://github.com/adiwajshing/Baileys/) as a sim
 # Docker Compose
 
 1. Follow the [Installation](#installation) procedure
-2. Update `.env` and set 
+2. Update `.env` and set
+
 ```
 MONGODB_ENABLED=true
 MONGODB_URL=mongodb://mongodb:27017/whatsapp_api
 ```
+
 3. Set your `TOKEN=` to a random string.
-4. Execute 
+4. Execute
+
 ```
 docker-compose up -d
 ```
@@ -45,7 +55,7 @@ docker-compose up -d
 Edit environment variables on `.env`
 
 ```a
-Important: You must set TOKEN= to a random string to protect the init route.
+Important: You must set TOKEN= to a random string to protect the route.
 ```
 
 ```env
@@ -66,7 +76,7 @@ To generate an Instance Key
 Using the route:
 
 ```bash
-curl --location --request GET 'localhost:3333/instance/init?token=RANDOM_STRING_HERE' \
+curl --location --request GET 'localhost:3333/instance/init' \
 --data-raw ''
 ```
 
@@ -86,7 +96,7 @@ To generate a Custom Instance
 Using the route:
 
 ```bash
-curl --location --request GET 'localhost:3333/instance/init?token=RANDOM_STRING_HERE&key=CUSTOM_INSTANCE_KEY_HERE&webhook=true&webhookUrl=https://webhook.site/d7114704-97f6-4562-9a47-dcf66b07266d' \
+curl --location --request GET 'localhost:3333/instance/init?key=CUSTOM_INSTANCE_KEY_HERE&webhook=true&webhookUrl=https://webhook.site/d7114704-97f6-4562-9a47-dcf66b07266d' \
 --data-raw ''
 ```
 
@@ -128,6 +138,7 @@ curl --location --request POST 'localhost:3333/message/text?key=INSTANCE_KEY_HER
 See all routes here [src/api/routes](https://github.com/salman0ansari/whatsapp-api-nodejs/tree/main/src/api/routes)
 
 # Note
+
 I can't guarantee or can be held responsible if you get blocked or banned by using this software. WhatsApp does not allow bots using unofficial methods on their platform, so this shouldn't be considered totally safe.
 
 # Legal

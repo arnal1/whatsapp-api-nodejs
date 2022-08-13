@@ -1,24 +1,40 @@
 /* eslint-disable no-unsafe-optional-chaining */
 const { WhatsAppInstance } = require('../class/instance')
-const fs = require('fs')
-const path = require('path')
 const logger = require('pino')()
+const config = require('../../config/config')
 
 class Session {
     async restoreSessions() {
-        let restoredSessions = []
+        let restoredSessions = new Array()
+        let allCollections = []
         try {
-            const instances = fs.readdirSync(path.join(__dirname, `../sessiondata`))
-            instances.map((file) => {
-                if (file.includes('.json')) {
-                    restoredSessions.push(file.replace('.json', ''))
-                }
+            const db = mongoClient.db('whatsapp-api')
+            const result = await db.listCollections().toArray()
+            result.forEach((collection) => {
+                allCollections.push(collection.name)
             })
 
-            restoredSessions.map(async (key) => {
-                const instance = new WhatsAppInstance(key)
-                await instance.init()
-                WhatsAppInstances[key] = instance
+            allCollections.map((key) => {
+                const query = {}
+                db.collection(key)
+                    .find(query)
+                    .toArray(async (err, result) => {
+                        if (err) throw err
+                        const webhook = !config.webhookEnabled
+                            ? undefined
+                            : config.webhookEnabled
+                        const webhookUrl = !config.webhookUrl
+                            ? undefined
+                            : config.webhookUrl
+                        const instance = new WhatsAppInstance(
+                            key,
+                            webhook,
+                            webhookUrl
+                        )
+                        await instance.init()
+                        WhatsAppInstances[key] = instance
+                    })
+                restoredSessions.push(key)
             })
         } catch (e) {
             logger.error('Error restoring sessions')
